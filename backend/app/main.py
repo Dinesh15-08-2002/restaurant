@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 
 from app.core.config import settings
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
-    docs_url=f"{settings.API_V1_STR}/docs",
+    docs_url="/docs",
+    redoc_url="/redoc",
 )
 
 if settings.cors_origins:
@@ -17,6 +19,12 @@ if settings.cors_origins:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+
+@app.get(f"{settings.API_V1_STR}/docs", include_in_schema=False)
+async def redirect_api_docs() -> RedirectResponse:
+    """Redirect /api/docs to /docs for developer convenience."""
+    return RedirectResponse(url="/docs")
 
 
 @app.get(f"{settings.API_V1_STR}/health", tags=["health"])

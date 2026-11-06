@@ -1,9 +1,24 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Indian Restaurant",
-  description: "Authentic Indian cuisine, warm hospitality, and timeless heritage flavours.",
+  title: "Aura of Awadh | Modern Indian Dining",
+  description:
+    "Experience timeless culinary heritage, tandoori artistry, and authentic Indian hospitality.",
 };
 
 export default function RootLayout({
@@ -12,8 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
         {children}
       </body>
     </html>
