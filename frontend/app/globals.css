@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+:root {
+  /* Light Mode Tokens */
+  --background: #FAF8F5;
+  --foreground: #151B18;
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-subtle: #F3EFEA;
+  --muted: #EDE7DE;
+  --muted-foreground: #4D5A53;
+  --subtle-foreground: #6B7871;
+  --border: #E6DFD5;
+  --input: #D0C5B4;
+  --ring: #B45309;
+
+  --primary: #B45309;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #92400E;
+
+  --secondary: #B84A22;
+  --secondary-foreground: #FFFFFF;
+  --secondary-hover: #9A3816;
+
+  --accent: #F4E8D3;
+  --accent-foreground: #151B18;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(21, 27, 24, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(21, 27, 24, 0.1), 0 2px 4px -2px rgba(21, 27, 24, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(21, 27, 24, 0.15), 0 4px 6px -4px rgba(21, 27, 24, 0.1);
+  --shadow-glow: 0 0 25px -4px rgba(180, 83, 9, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Dark Mode Tokens (Atmospheric Dining Default) */
+    --background: #0F1412;
+    --foreground: #FDFBF7;
+    --surface: #18201C;
+    --surface-elevated: #222C27;
+    --surface-subtle: #131A16;
+    --muted: #1E2723;
+    --muted-foreground: #C0C7C2;
+    --subtle-foreground: #8E9A92;
+    --border: #2B3830;
+    --input: #3A4B41;
+    --ring: #F59E0B;
+
+    --primary: #F59E0B;
+    --primary-foreground: #1C1305;
+    --primary-hover: #D97706;
+
+    --secondary: #C85A32;
+    --secondary-foreground: #FFFFFF;
+    --secondary-hover: #B24A24;
+
+    --accent: #26342D;
+    --accent-foreground: #FDFBF7;
+
+    --shadow-sm: 0 1px 2px 0 rgba(15, 20, 18, 0.35);
+    --shadow-md: 0 4px 6px -1px rgba(15, 20, 18, 0.45), 0 2px 4px -2px rgba(15, 20, 18, 0.35);
+    --shadow-lg: 0 10px 15px -3px rgba(15, 20, 18, 0.6), 0 4px 6px -4px rgba(15, 20, 18, 0.4);
+    --shadow-glow: 0 0 25px -4px rgba(245, 158, 11, 0.35);
+  }
+}
+
+.dark,
+[data-theme="dark"] {
+  --background: #0F1412;
+  --foreground: #FDFBF7;
+  --surface: #18201C;
+  --surface-elevated: #222C27;
+  --surface-subtle: #131A16;
+  --muted: #1E2723;
+  --muted-foreground: #C0C7C2;
+  --subtle-foreground: #8E9A92;
+  --border: #2B3830;
+  --input: #3A4B41;
+  --ring: #F59E0B;
+
+  --primary: #F59E0B;
+  --primary-foreground: #1C1305;
+  --primary-hover: #D97706;
+
+  --secondary: #C85A32;
+  --secondary-foreground: #FFFFFF;
+  --secondary-hover: #B24A24;
+
+  --accent: #26342D;
+  --accent-foreground: #FDFBF7;
+
+  --shadow-sm: 0 1px 2px 0 rgba(15, 20, 18, 0.35);
+  --shadow-md: 0 4px 6px -1px rgba(15, 20, 18, 0.45), 0 2px 4px -2px rgba(15, 20, 18, 0.35);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 20, 18, 0.6), 0 4px 6px -4px rgba(15, 20, 18, 0.4);
+  --shadow-glow: 0 0 25px -4px rgba(245, 158, 11, 0.35);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-glow: var(--shadow-glow);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
