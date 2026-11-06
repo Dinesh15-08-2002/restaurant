@@ -39,7 +39,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    /* Dark Mode Tokens (Atmospheric Dining Default) */
+    /* Dark Mode Tokens (Default Atmospheric Theme) */
     --background: #0F1412;
     --foreground: #FDFBF7;
     --surface: #18201C;
@@ -102,6 +102,9 @@
 }
 
 @theme {
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
@@ -137,9 +140,89 @@
   --shadow-glow: var(--shadow-glow);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Fluid Typography Utilities using clamp() */
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.font-h1 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.font-h2 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.font-h3 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.35;
+}
+
+.font-body-lead {
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.font-body {
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.65;
+}
+
+.font-caption {
+  font-size: clamp(0.8rem, 0.85vw, 0.875rem);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* Scroll Animation and Accessibility */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
