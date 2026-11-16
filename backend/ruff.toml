@@ -1,0 +1,38 @@
+# Ruff configuration for the FastAPI backend
+# https://docs.astral.sh/ruff/configuration/
+
+target-version = "py313"
+line-length = 100
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "RUF",  # ruff-specific
+    "PIE",  # flake8-pie
+]
+
+ignore = [
+    # B008: FastAPI's Depends() in function argument defaults is the
+    # framework's official dependency injection pattern. Every FastAPI
+    # project uses this. Suppressing the false positive globally.
+    "B008",
+
+    # BLE001: The health check endpoint deliberately catches bare Exception
+    # so it can return a JSON error body instead of a 500 crash.
+    # This is intentional defensive coding, not sloppy error handling.
+    "BLE001",
+
+    # UP042: str+Enum is the documented SQLAlchemy pattern for string enums
+    # stored natively in PostgreSQL. It's not deprecated in this context.
+    "UP042",
+]
+
+[lint.per-file-ignores]
+# Seed data and Alembic migrations contain long string literals (descriptions,
+# SQL expressions) that cannot be practically split without hurting readability.
+"app/seed.py" = ["E501"]
+"alembic/versions/*.py" = ["E501", "W291"]
